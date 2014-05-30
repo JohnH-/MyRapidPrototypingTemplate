@@ -1,5 +1,5 @@
 var mongoose         = require('mongoose')
-  , express          = require("express")
+  , express          = require('express')
   , http             = require('http')
   , path             = require('path')
   , app              = express();
@@ -74,6 +74,19 @@ var resumePost = mongoose.model('resumePost', resumePosts);
 //SERVER  ///////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
-http.createServer(app).listen('4000', '10.0.0.13', function() {
-  console.log('server listening on port 4000');
-});
+var serverConf = {
+    port : 4000
+  , ip   : "localhost"
+  , start: function() { 
+    console.log('server started @' + 
+    " " + serverConf.ip + ":" + serverConf.port); }
+}
+
+http.createServer(app).listen(serverConf.port, serverConf.ip, serverConf.start());
+
+
+
+
+
+
+
